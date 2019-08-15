@@ -7,16 +7,20 @@ import os
 
 # 分析一个目录
 def analysis(strDir):
+	# 创建一个4列的表格
 	df = pd.DataFrame(columns = ["meterid", "category", "similary", "exceptionnum"])
-
+	# 空列表
 	emptyGas = []
-
+	# os.listdir(strDir)返回指定的文件夹包含的文件或文件夹的名字的列表
 	for f in os.listdir(strDir):
 		try:
 			if f[-4:] == ".csv":
 				idName = f[:-4]
+				# 把目录和文件名合成一个路径
 				strPath = os.path.join(strDir, f)
+				# 初始化Meter对象（表具单元对象）
 				objMeter = meter.Meter(idName, strPath, '', '', True)
+				# 加载数据
 				objMeter.loadData()
 
 				if objMeter.isEmptyGas():
