@@ -5,8 +5,9 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize);
 
 int main(int argc, char const *argv[]) {
   int nums[4] = {2, 7, 11, 15};
+  int size = 0;
   int *p;
-  p = twoSum(nums, 4, 9, p);
+  p = twoSum(nums, 4, 9, &size);
   for (int i = 0; i < 2; i++) {
     printf("%d\n", *(p + i));
   }
@@ -27,9 +28,10 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
       if (result == target) {
         // Return
         array[0] = i;
-        array[1] = i + j;
+        array[1] = j;
       }
     }
   }
+  *returnSize = 2;
   return array;
 }
